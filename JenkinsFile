@@ -2,34 +2,33 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/NithishTU/PES1UG22CS824_Jenkins.git' 
+            }
+        }
         stage('Build') {
             steps {
-                sh 'g++ working.cpp -o temp'
-                 build job: 'PES1UG22CS837_1', wait: false
-                 echo 'Build by CS837 successful'
+                build 'PES1UG22CS824-1'
+                sh 'g++ working.cpp -o output'
             }
         }
-
         stage('Test') {
             steps {
-                sh 'cat working.cpp'
-                echo 'Test by CS837 successful'
+                sh './output'
             }
         }
-
         stage('Deploy') {
             steps {
-               
-                 echo 'Deploy by CS837 successful'
+                echo 'deploy'
             }
         }
     }
 
     post {
         failure {
-            
-                echo 'Pipeline Failed'
-          
+            echo 'Pipeline failed!'
         }
     }
 }
