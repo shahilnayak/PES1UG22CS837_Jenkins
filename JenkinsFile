@@ -5,12 +5,12 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/NithishTU/PES1UG22CS824_Jenkins.git' 
+                url: '' 
             }
         }
         stage('Build') {
             steps {
-                build 'PES1UG22CS824-1'
+                build 'PES1UG22CS837-1'
                 sh 'g++ working.cpp -o output'
             }
         }
